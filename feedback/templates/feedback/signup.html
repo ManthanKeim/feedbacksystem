@@ -1,0 +1,10 @@
+{% extends 'feedback/base_layout.html' %}
+
+{% block content %}
+        <form class = "site-form" action = "{%url 'feedback:signup'%}" method="post">
+            {%csrf_token%}
+            {{form}}
+            <input type = "submit" value = "Sign Up">
+        </form>
+        </div>
+{% endblock %}

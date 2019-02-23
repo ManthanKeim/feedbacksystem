@@ -1,0 +1,9 @@
+{% extends 'feedback/base_layout.html' %}
+
+{% block content %}
+        <form class = "site-form" action = "{%url 'feedback:login'%}" method="post">
+            {% csrf_token %}
+            {{form}}
+            <input type = "submit" value = "Login">
+        </form>
+{% endblock %}

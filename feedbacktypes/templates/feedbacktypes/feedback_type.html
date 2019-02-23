@@ -1,0 +1,16 @@
+{% extends 'feedback/base_layout.html' %}
+
+{% block content %}
+<h1>Welcome, {{request.user.username}}</h1>
+        <h1>Welcome to Feedback System.</h1>
+        <div class = "feedbacks">
+            {% for feedback in feedbacks %}
+            <div class = "feedback">
+                <h2><a href="{% url 'feedbacktypes:detail'  %}">{{feedback.title}}</a></h2>
+                <p>{{ feedback.body }}</p>
+                <p>{{ feedback.date }}</p>
+            </div>
+
+            {% endfor %}
+        </div>
+ {% endblock %}

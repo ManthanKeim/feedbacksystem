@@ -1,0 +1,32 @@
+{% extends 'feedback/base_layout.html' %}
+
+{% block content %}
+<div class="teacher-feedback">
+    <div class="feedback">
+        
+        <h1 align="center">Teacher Feedback Form</h1>
+        <select name="dropdown">
+            {% for teacher in teacher_name %}
+                <option value="{{ teacher.teacher_name }}">{{ teacher.teacher_name }}</option>
+            {% endfor %}
+        </select>
+        <!-- <ul>
+            {% for question in latest_questions %}
+            <li><h1> {{question.question_text}}</h1></li>
+            {% endfor %}
+        </ul>         -->
+        {%for question in latest_questions %}
+        <h3> {{question.question_text}}</h3>
+        <form action="{% url 'feedbacktypes:detail' %}" method="POST">
+            {% csrf_token %}
+            {% for choice in question.choice_set.all %}
+            <input type="radio" name ="choice" id ="choice{{forloop.counter}}" value = "{{choice.id}}"/>
+            <label for="choice{{forloop.counter}}"> {{choice.choice_text}}</label> <br>
+            {% endfor %}
+         </form>
+         {% endfor %}
+         <br>           
+        <input type="submit" value = "Submit"/>
+    </div>
+</div>
+{% endblock %}
